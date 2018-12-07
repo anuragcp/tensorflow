@@ -2,25 +2,27 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tensorflow.python.keras as keras
+from tensorflow.python.keras as import keras
 from tensorflow.python.keras import backend as K
-import tensorflow as tf
+import tensorflow
 
 class ncs():
-    def __init__():
+    def __init__(self):
         # nothing to say now
         pass
     
-    def to_ncs_graph(model_file, weight_file):
-        config = None
-        with open(model_file, "r") as file:
-            config = file.read()
+    def to_ncs_graph(self, model_file, weight_file):
+        self.model_file = model_file
+        self.weight_file = weight_file
+        self.config = None
+        with open(self.model_file, "r") as file:
+            self.config = file.read()
         
         K.set_learning_phase(0)
-        model = keras.models.model_from_json(config)
-        model.load_weights(weight_file)
-        saver = tf.train.Saver()
-        sess = K.get_session()
-        saver.save(sess, "./TF_Model/tf_model")
-        fw = tf.summary.FileWriter('logs', sess.graph)
-        fw.close()
+        self.model = keras.models.model_from_json(self.config)
+        self.model.load_weights(self.weight_file)
+        self.saver = tensorflow.python.train.Saver()
+        self.sess = K.get_session()
+        self.saver.save(self.sess, "./TF_Model/tf_model")
+        self.fw = tensorflow.python.summary.FileWriter('logs', self.sess.graph)
+        self.fw.close()
