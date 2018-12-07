@@ -1,5 +1,9 @@
-import tensorflow.keras as keras
-import tensorflow.keras.backend as K
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import tensorflow.python.keras as keras
+from tensorflow.python.keras import backend as K
 import tensorflow as tf
 
 class ncs():
@@ -14,7 +18,7 @@ class ncs():
         
         K.set_learning_phase(0)
         model = keras.models.model_from_json(config)
-        model.load_weights(weights_file)
+        model.load_weights(weight_file)
         saver = tf.train.Saver()
         sess = K.get_session()
         saver.save(sess, "./TF_Model/tf_model")
